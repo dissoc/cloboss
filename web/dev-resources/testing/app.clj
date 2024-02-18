@@ -14,18 +14,18 @@
 
 (ns testing.app
   (:require [clojure.java.io :as io]
-            [immutant.web :as web]
-            [immutant.web.async :as async]
-            [immutant.web.sse :as sse]
-            [immutant.web.internal.servlet :as servlet]
-            [immutant.web.internal.ring    :as ring]
-            [immutant.internal.util :refer [maybe-deref]]
-            [immutant.web.middleware :refer (wrap-session wrap-websocket)]
-            [immutant.codecs :refer (encode)]
+            [cloboss.web :as web]
+            [cloboss.web.async :as async]
+            [cloboss.web.sse :as sse]
+            [cloboss.web.internal.servlet :as servlet]
+            [cloboss.web.internal.ring    :as ring]
+            [cloboss.internal.util :refer [maybe-deref]]
+            [cloboss.web.middleware :refer (wrap-session wrap-websocket)]
+            [cloboss.codecs :refer (encode)]
             [compojure.core :refer (ANY GET defroutes)]
             [ring.util.response :refer (charset redirect response)]
             [ring.middleware.params :refer [wrap-params]])
-  (:import [javax.servlet.http HttpServlet]))
+  (:import [jakarta.servlet.http HttpServlet]))
 
 (defn counter [{:keys [session websocket?] :as request}]
   (if websocket?

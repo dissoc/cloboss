@@ -12,17 +12,19 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-(defproject org.immutant/transactions "2.1.11-SNAPSHOT"
+(defproject org.cloboss/transactions "2.1.11-SNAPSHOT"
   :description "Provides support for distributed (XA) transactions."
   :plugins [[lein-modules "0.3.11"]]
 
-  :dependencies [[org.immutant/core _]
-                 [org.projectodd.wunderboss/wunderboss-transactions _]]
+  :dependencies [[org.cloboss/core "2.1.11-SNAPSHOT"]
+                 [org.projectodd.atticboss/atticboss-messaging-artemis "0.13.2-SNAPSHOT"]
+                 [org.projectodd.atticboss/atticboss-caching "0.13.2-SNAPSHOT"]
+                 [org.projectodd.atticboss/atticboss-transactions "0.13.2-SNAPSHOT"]]
 
   :jvm-opts ["-Dhornetq.data.dir=target/hornetq-data"]
 
   :profiles {:dev
-             {:dependencies [[org.immutant/messaging _ :exclusions [org.hornetq/hornetq-journal org.hornetq/hornetq-commons]]
-                             [org.immutant/caching _ :exclusions [org.jboss.spec.javax.transaction/jboss-transaction-api_1.1_spec]]
+             {:dependencies [[org.cloboss/messaging _ :exclusions [org.hornetq/hornetq-journal org.hornetq/hornetq-commons]]
+                             [org.cloboss/caching _ :exclusions [org.jboss.spec.javax.transaction/jboss-transaction-api_1.1_spec]]
                              [org.clojure/java.jdbc _]
                              [com.h2database/h2 _]]}})

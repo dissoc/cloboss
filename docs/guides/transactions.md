@@ -1,12 +1,12 @@
 ---
 {:title "Transactions"
  :sequence 4.5
- :base-ns immutant.transactions
+ :base-ns cloboss.transactions
  :description "Providing support for distributed (XA) transactions"}
 ---
 
 Immutant encapsulates the distributed transaction support provided by
-[Narayana] within the [[immutant.transactions]] namespace. This allows
+[Narayana] within the [[cloboss.transactions]] namespace. This allows
 you to define XA (2PC) transactions involving Immutant components
 either inside the WildFly application server or embedded within your
 standalone apps.
@@ -69,9 +69,9 @@ But annotations are gross, my friend!
 
 So in Immutant, [JEE transaction attributes] are represented as
 Clojure macros. In fact, the [[transaction]]
-macro is merely an alias for [[immutant.transactions.scope/required]],
+macro is merely an alias for [[cloboss.transactions.scope/required]],
 which is the implicit attribute used in JEE. There are a total of 6
-macros in the [[immutant.transactions.scope]] namespace:
+macros in the [[cloboss.transactions.scope]] namespace:
 
 * `required`- Execute within current transaction, if any, otherwise
   start a new one, execute, commit or rollback
@@ -103,9 +103,9 @@ exception in the event of failure. This exception will cause the
 operations on the XA resources to rollback. For example,
 
 ```clojure
-(immutant.transactions/transaction
-  (immutant.messaging/publish queue message)
-  (immutant.caching/swap-in! cache :count (fnil inc 0))
+(cloboss.transactions/transaction
+  (cloboss.messaging/publish queue message)
+  (cloboss.caching/swap-in! cache :count (fnil inc 0))
   (clojure.java.jdbc/with-db-transaction [t spec]
     (write-sql-things t data)))
 ```
@@ -133,12 +133,12 @@ illegal within an XA transaction, specifically: `commit`, `rollback`,
 and `setAutoCommit`. It's up to the `TransactionManager` to
 commit/rollback a distributed transaction, not its constituents. So
 Immutant provides a factory function,
-[[immutant.transactions.jdbc/factory]], that wraps the connection to
+[[cloboss.transactions.jdbc/factory]], that wraps the connection to
 turn those calls into no-ops. This means the database spec you pass to
 [java.jdbc] should look something like this:
 
 ```clojure
-(def db-spec {:factory immutant.transactions.jdbc/factory
+(def db-spec {:factory cloboss.transactions.jdbc/factory
               :name "java:jboss/datasources/ExampleDS"})
 ```
 
@@ -162,7 +162,7 @@ relevant" analog to the above is this:
 
 So you may need to set them both.
 
-[immutant.transactions]: immutant.transactions.html
+[cloboss.transactions]: cloboss.transactions.html
 [Narayana]: http://www.jboss.org/narayana
 [Infinispan]: http://infinispan.org
 [HornetQ]: http://www.jboss.org/hornetq

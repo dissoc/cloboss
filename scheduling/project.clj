@@ -12,11 +12,11 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-(defproject org.immutant/scheduling "2.1.11-SNAPSHOT"
+(defproject org.cloboss/scheduling "2.1.11-SNAPSHOT"
   :description "Schedule jobs for execution in the future."
   :plugins [[lein-modules "0.3.11"]]
 
-  :dependencies [[org.immutant/core _]
-                 [org.projectodd.wunderboss/wunderboss-scheduling _]]
+  :dependencies [[org.cloboss/core "2.1.11-SNAPSHOT"]
+                 [org.projectodd.atticboss/atticboss-scheduling "0.13.2-SNAPSHOT"]]
 
   :profiles {:dev {:dependencies [[clj-time _]]}})

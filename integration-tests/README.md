@@ -3,7 +3,7 @@
 You'll need to set the path to your WildFly install, either by setting
 `$JBOSS_HOME` or adding:
 
-    :immutant {:test {:jboss-home "path/to/wildfly"}}
+    :cloboss {:test {:jboss-home "path/to/wildfly"}}
 
 to your :user profile in `~/.lein/profiles.clj`.
 

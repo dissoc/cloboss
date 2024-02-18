@@ -1,13 +1,13 @@
 ---
 {:title "Messaging"
  :sequence 2
- :base-ns immutant.messaging
+ :base-ns cloboss.messaging
  :description "Simple creation and usage of distributed queues and topics"}
 ---
 
 If you're coming from Immutant 1.x, you may notice that the messaging
-artifact has been renamed (`org.immutant/immutant-messaging` is now
-`org.immutant/messaging`), and the API has changed a bit. We'll point
+artifact has been renamed (`org.cloboss/cloboss-messaging` is now
+`org.cloboss/messaging`), and the API has changed a bit. We'll point
 out the notable API changes as we go.
 
 ## The API
@@ -49,15 +49,15 @@ from 1.x - the `unlisten` and `stop` functions have been collapsed to
 
 You should follow the instructions in the [installation] guide to
 set up a project using Immutant 2.x, and in addition to
-`org.immutant/messaging` add `[cheshire "5.3.1"]` to the project
+`org.cloboss/messaging` add `[cheshire "5.3.1"]` to the project
 dependencies (we'll be encoding some messages as JSON in our examples
 below, so we'll go ahead and add
 [cheshire](https://github.com/dakrone/cheshire) while we're at it).
-Then, fire up a REPL, and require the `immutant.messaging` namespace
+Then, fire up a REPL, and require the `cloboss.messaging` namespace
 to follow along:
 
 ```clojure
-(require '[immutant.messaging :refer :all])
+(require '[cloboss.messaging :refer :all])
 ```
 
 First, let's create a queue:
@@ -377,7 +377,7 @@ WildFly configuration to achieve similar effects.
 
 In addition, it is possible to override many HornetQ configuration
 settings at runtime using
-[[immutant.messaging.hornetq/set-address-options]].
+[[cloboss.messaging.hornetq/set-address-options]].
 
 ## Transactions
 
@@ -400,26 +400,26 @@ In Immutant 1.x, message listeners were automatically enlisted
 participants in an XA transaction, but that is not the case with
 Immutant 2.x. Within the listener function, you must now explicitly
 define a transaction using one of the macros in
-[[immutant.transactions]]. If an exception escapes its body, the
+[[cloboss.transactions]]. If an exception escapes its body, the
 transaction will be rolled back, and if the exception bubbles out of
 the listener function, the message will be queued for redelivery.
 
 But the rollback of the transaction has no relationship to message
 redelivery, which is only triggered by the exception. The transaction
 *could* be rolled back as a result of calling
-[[immutant.transactions/set-rollback-only]], in which case no
+[[cloboss.transactions/set-rollback-only]], in which case no
 exception would be thrown. Hence, rollback would occur, but not
 redelivery.
 
 See the [Transactions Guide] for more details.
 
 [HornetQ]: http://hornetq.jboss.org/
-[API]: immutant.messaging.html
+[API]: cloboss.messaging.html
 [JMS]: https://en.wikipedia.org/wiki/Java_Message_Service
 [installation]: guide-installation.html
 [request-response]: https://en.wikipedia.org/wiki/Request-response
 [Future]: http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html
 [edn]: https://github.com/edn-format/edn
-[default versions]: https://github.com/projectodd/wunderboss/blob/{{wunderboss-tag}}/messaging-hornetq/src/main/resources/
+[default versions]: https://github.com/projectodd/atticboss/blob/{{atticboss-tag}}/messaging-hornetq/src/main/resources/
 [configuration options]: https://docs.jboss.org/hornetq/2.4.0.Final/docs/user-manual/html_single/#server.configuration
 [Transactions Guide]: guide-transactions.html

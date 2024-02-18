@@ -21,14 +21,14 @@
 (def version
   (.getProperty
     (doto (Properties.)
-      (.load (->> "META-INF/maven/org.immutant/build-helper/pom.properties"
+      (.load (->> "META-INF/maven/org.cloboss/build-helper/pom.properties"
                io/resource
                io/reader)))
     "version"))
 
 (defn generate-index [project]
   (eval/eval-in-project
-    (update-in project [:dependencies] conj ['org.immutant/build-helper version])
+    (update-in project [:dependencies] conj ['org.cloboss/build-helper version])
     `(build-helper.docs.util/generate-index
        ~(:root project)
        ~(:target-path project)

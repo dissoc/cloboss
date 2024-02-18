@@ -15,7 +15,7 @@ same way you can to [WildFly](guide-wildfly.html), with some caveats.
 ## Messaging
 
 EAP 6.4.x uses an older version of HornetQ (2.3.25 vs. 2.4.5 brought
-in by Immutant). If you are using `org.immutant/messaging`, you'll
+in by Immutant). If you are using `org.cloboss/messaging`, you'll
 need to exclude its version of HornetQ and bring in the version being
 used in EAP:
 
@@ -27,7 +27,7 @@ used in EAP:
 ## Transactions
 
 EAP 6.4.x uses a version of Narayana (4.17.29 vs. 5.0.3 brought in by
-Immutant). If you are using `org.immutant/transactions`, you'll need
+Immutant). If you are using `org.cloboss/transactions`, you'll need
 to exclude its version of Narayana and bring in the version being used
 in EAP (note the different groupId):
 
@@ -36,7 +36,7 @@ in EAP (note the different groupId):
 
 If you are connecting external clients to the HornetQ inside EAP, you
 must *not* set the `:remote-type` option to `:hornetq-wildfly` in the
-options passed to [[immutant.messaging/context]] and will need to set
+options passed to [[cloboss.messaging/context]] and will need to set
 the `:port` option to `5445` as EAP doesn't support WildFly's protocol
 multiplexing over HTTP.
 
@@ -69,7 +69,7 @@ file needs to be under `WEB-INF/jboss-web.xml`, and contain:
     </jboss-web>
 
 The easiest way to do this is to use the
-[`:war-resources` option of the `lein-immutant` plugin](https://github.com/immutant/lein-immutant/blob/master/docs/deployment.md). Note
+[`:war-resources` option of the `lein-cloboss` plugin](https://github.com/cloboss/lein-cloboss/blob/master/docs/deployment.md). Note
 that a WAR with the above contents *can't* be deployed to a WildFly
 server, as `enable-websockets` isn't a valid option there,
 unfortunately.
@@ -95,9 +95,9 @@ things, in particular:
 ## Detecting EAP at runtime
 
 If you need to detect if you are running inside EAP or not, in
-addition to the [[immutant.util/in-container?]] function to let you
+addition to the [[cloboss.util/in-container?]] function to let you
 know if you are in any container (WildFly or EAP), there is
-[[immutant.util/in-eap?]], which will only return `true` if you are
+[[cloboss.util/in-eap?]], which will only return `true` if you are
 running inside EAP.
 
 ## Doing it all from a profile
@@ -111,12 +111,12 @@ EAP, you can put them all in a lein profile:
                 :dependencies [[org.hornetq/hornetq-jms-server "2.3.25.Final"]
                                [org.hornetq/hornetq-server "2.3.25.Final"]
                                [org.jboss.jbossts.jta/narayana-jta "4.17.29.Final"]]
-                :immutant {:war {:resource-paths ["eap-resources"]}}}}
+                :cloboss {:war {:resource-paths ["eap-resources"]}}}}
 
 where `eap-resources/` contains `WEB-INF/jboss-web.xml`. You would
 then apply this profile only when building a WAR file for EAP:
 
-    lein with-profile +eap immutant war
+    lein with-profile +eap cloboss war
 
 For an example of an application that does this, see our
-[feature demo](https://github.com/immutant/feature-demo/).
+[feature demo](https://github.com/cloboss/feature-demo/).

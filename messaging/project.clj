@@ -12,20 +12,15 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-(defproject org.immutant/messaging "2.1.11-SNAPSHOT"
+(defproject org.cloboss/messaging "2.1.11-SNAPSHOT"
   :description "Easily publish and receive messages containing any type of nested data structure to dynamically-created queues and topics."
   :plugins [[lein-modules "0.3.11"]]
 
-  :dependencies [[org.immutant/core _]
-                 [org.projectodd.wunderboss/wunderboss-messaging-hornetq _]]
+  :dependencies [[org.cloboss/core "2.1.11-SNAPSHOT"]
+                 [org.projectodd.atticboss/atticboss-messaging-artemis "0.13.2-SNAPSHOT"]]
 
   :jvm-opts ["-Dhornetq.data.dir=target/hornetq-data"]
 
   :profiles {:dev
              {:dependencies [[cheshire _]
-                             [org.clojure/data.fressian _]]}
-             :hornetq-2.3
-             {:exclusions [org.hornetq/hornetq-server
-                           org.hornetq/hornetq-jms-server]
-              :dependencies [[org.hornetq/hornetq-server "2.3.25.Final"]
-                             [org.hornetq/hornetq-jms-server "2.3.25.Final"]]}})
+                             [org.clojure/data.fressian _]]}})

@@ -5,14 +5,14 @@
 Leiningen:
 
 ``` clj
-[org.immutant/web "2.1.10"]
+[org.cloboss/web "2.1.10"]
 ```
 
 Maven:
 
 ``` xml
 <dependency>
-  <groupId>org.immutant</groupId>
+  <groupId>org.cloboss</groupId>
   <artifactId>web</artifactId>
   <version>2.1.10</version>
 </dependency>

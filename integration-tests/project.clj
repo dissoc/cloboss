@@ -12,17 +12,17 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-(defproject org.immutant/integs "2.1.11-SNAPSHOT"
+(defproject org.cloboss/integs "2.1.11-SNAPSHOT"
   :plugins [[lein-modules "0.3.11"]]
-  :dependencies [[org.immutant/immutant _]
-                 [org.immutant/wildfly _]]
+  :dependencies [[org.cloboss/cloboss _]
+                 [org.cloboss/wildfly _]]
   :aliases {"all" ^:replace ["do" "clean," "test"]}
   :modules {:parent nil}
-  :main clojure.core/+                  ; immutant war build requires
+  :main clojure.core/+                  ; cloboss war build requires
                                         ; a main... any no-arg taking
                                         ; fn will do
-  :profiles {:integ-base {:plugins [[lein-immutant "2.1.0"]]
-                          :aliases {"test" ^:displace ["immutant" "test"]}
+  :profiles {:integ-base {:plugins [[lein-cloboss "2.1.0"]]
+                          :aliases {"test" ^:displace ["cloboss" "test"]}
                           :modules {:parent ".."}}
              :integ-messaging {:test-paths ["../messaging/test"]}
              :integ-scheduling {:dependencies [[clj-time _]]
@@ -58,13 +58,13 @@
              :cluster {:eval-in :leiningen ; because prj/read, lein-modules, hooks, etc
                        :modules {:parent ".."}
                        :main integs.cluster
-                       :dependencies [[org.immutant/fntest _]
+                       :dependencies [[org.cloboss/fntest _]
                                       [clj-http _]
                                       [environ _]]
                        :plugins [[lein-environ "1.0.0"]]
                        :test-paths ^:replace ["test-clustering"]}
              :eap-base {:env {:eap true}
-                        :immutant {:war {:resource-paths ["eap-resources"]}}
+                        :cloboss {:war {:resource-paths ["eap-resources"]}}
                         :exclusions [org.hornetq/hornetq-jms-server org.hornetq/hornetq-server org.jboss.narayana.jta/narayana-jta]
                         :dependencies [[io.netty/netty "3.10.5.Final"] ;required by http.async.client 1.2
                                        [org.hornetq/hornetq-jms-server "2.3.25.Final"]

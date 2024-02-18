@@ -1,8 +1,8 @@
-# Immutant [![Build Status](https://travis-ci.org/immutant/immutant.svg?branch=thedeuce)](https://travis-ci.org/immutant/immutant)
+# Immutant [![Build Status](https://travis-ci.org/cloboss/cloboss.svg?branch=thedeuce)](https://travis-ci.org/cloboss/cloboss)
 
 Immutant is an integrated suite of libraries providing commodity
 services for Clojure applications. This README covers building
-Immutant. For usage and more details, see http://immutant.org/.
+Immutant. For usage and more details, see http://cloboss.org/.
 
 To file an issue, see https://issues.jboss.org/browse/IMMUTANT
 
@@ -11,15 +11,15 @@ To file an issue, see https://issues.jboss.org/browse/IMMUTANT
 Leiningen:
 
 ``` clj
-[org.immutant/immutant "2.1.10"]
+[org.cloboss/cloboss "2.1.10"]
 ```
 
 Maven:
 
 ``` xml
 <dependency>
-  <groupId>org.immutant</groupId>
-  <artifactId>immutant</artifactId>
+  <groupId>org.cloboss</groupId>
+  <artifactId>cloboss</artifactId>
   <version>2.1.10</version>
 </dependency>
 ```

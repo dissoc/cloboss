@@ -100,7 +100,7 @@
   (update-in (f project ns var) [1] keyword->code))
 
 (defn add-custom-css-ref [content]
-  (str/replace content #"</head>" "<link href=\"assets/immutant.css\" rel=\"stylesheet\" type=\"text/css\"></head>"))
+  (str/replace content #"</head>" "<link href=\"assets/cloboss.css\" rel=\"stylesheet\" type=\"text/css\"></head>"))
 
 (defn render-with-post-processing [f & args]
   (-> (apply f args)
@@ -150,7 +150,7 @@
     (str/replace (format "%s-current" (:title current)) "current")
     (str/replace  "</body>"
       (str "<script src=\"assets/jquery.syntax.min.js\" type=\"text/javascript\"></script>"
-        "<script src=\"assets/immutant.js\" type=\"text/javascript\"></script></body>"))))
+        "<script src=\"assets/cloboss.js\" type=\"text/javascript\"></script></body>"))))
 
 (def ^:dynamic *guides*)
 
@@ -226,16 +226,16 @@
         :when (.endsWith (.getName f) ".md")]
     (parse-guide f)))
 
-(defn add-wunderboss-tag [{:keys [versions] :as options}]
+(defn add-atticboss-tag [{:keys [versions] :as options}]
   (assoc options
-    :wunderboss-tag (let [version (versions 'org.projectodd.wunderboss)]
+    :atticboss-tag (let [version (versions 'org.projectodd.atticboss)]
                       (if (re-find #"^\d+\.\d+\.\d+$" version)
                         version
                         "master"))))
 
 (defn add-mustache-data [options]
   (-> options
-    add-wunderboss-tag))
+    add-atticboss-tag))
 
 (defn render-guides [options guides target-dir]
   (doseq [{:keys [source-file content output-file] :as guide} guides]
@@ -265,7 +265,7 @@
 
 (def codox-options
   {:name "Immutant"
-   :src-dir-uri "https://github.com/immutant/immutant/tree/"
+   :src-dir-uri "https://github.com/cloboss/cloboss/tree/"
    :src-linenum-anchor-prefix "L"
    :description "The public API for Immutant."})
 
@@ -297,8 +297,8 @@
                :namespaces namespaces
                :output-dir target-dir)
         (html/write-docs))
-      (doseq [f ["assets/immutant.css"
-                 "assets/immutant.js"
+      (doseq [f ["assets/cloboss.css"
+                 "assets/cloboss.js"
                  "assets/jquery.syntax.brush.lisp.js"
                  "assets/jquery.syntax.cache.js"
                  "assets/jquery.syntax.core.css"

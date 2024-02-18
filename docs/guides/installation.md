@@ -24,11 +24,11 @@ project's classpath:
 ```clojure
 (defproject some-project "1.2.3"
   ...
-  :dependencies [[org.immutant/web "{{version}}"]
-                 [org.immutant/caching "{{version}}"]
-                 [org.immutant/messaging "{{version}}"]
-                 [org.immutant/scheduling "{{version}}"]
-                 [org.immutant/transactions "{{version}}"]])
+  :dependencies [[org.cloboss/web "{{version}}"]
+                 [org.cloboss/caching "{{version}}"]
+                 [org.cloboss/messaging "{{version}}"]
+                 [org.cloboss/scheduling "{{version}}"]
+                 [org.cloboss/transactions "{{version}}"]])
 ```
 
 You would of course only include the libs you need, but if you really
@@ -38,20 +38,20 @@ aggregate that brings them all in transitively:
 ```clojure
 (defproject some-project "1.2.3"
   ...
-  :dependencies [[org.immutant/immutant "{{version}}"]]
+  :dependencies [[org.cloboss/cloboss "{{version}}"]]
 ```
 
 **NOTE:** There is another library providing utility functions relevant
 only within [WildFly] that is not brought in by the aggregate. If your
-app relies on the [[immutant.wildfly]] namespace and you wish to
+app relies on the [[cloboss.wildfly]] namespace and you wish to
 compile it outside the container, you'll need to explicitly depend on
-`org.immutant/wildfly` in your `project.clj`:
+`org.cloboss/wildfly` in your `project.clj`:
 
 ```clojure
 (defproject some-project "1.2.3"
   ...
-  :dependencies [[org.immutant/immutant "{{version}}"]
-                 [org.immutant/wildfly "{{version}}"]]
+  :dependencies [[org.cloboss/cloboss "{{version}}"]
+                 [org.cloboss/wildfly "{{version}}"]]
 ```
 See the [WildFly guide] for details.
 
@@ -71,7 +71,7 @@ is where you should invoke the Immutant services. For example:
 
 ```clojure
 (ns my-app.core
-  (:require [immutant.web :as web])
+  (:require [cloboss.web :as web])
   (:gen-class))
 
 (defn app [request]
@@ -102,7 +102,7 @@ to `src/my_app/handler.clj`:
 ```clojure
 (ns my-app.handler
   ...
-  (:require [immutant.web :as web])
+  (:require [cloboss.web :as web])
   ... )
 
 (def app ... )
@@ -131,9 +131,9 @@ add a repository to your `project.clj`:
 ```clojure
 (defproject some-project "1.2.3"
   ...
-  :dependencies [[org.immutant/immutant "2.x.incremental.BUILD_NUMBER"]]
+  :dependencies [[org.cloboss/cloboss "2.x.incremental.BUILD_NUMBER"]]
   :repositories [["Immutant 2.x incremental builds"
-                  "http://downloads.immutant.org/incremental/"]])
+                  "http://downloads.cloboss.org/incremental/"]])
 ```
 
 You should replace **BUILD_NUMBER** with the actual build number
@@ -145,15 +145,15 @@ page.
 
 The API docs for the latest Immutant release are always available here:
 
-* [http://immutant.org/documentation/current/apidoc/](/documentation/current/apidoc/)
+* [http://cloboss.org/documentation/current/apidoc/](/documentation/current/apidoc/)
 
 as well as the API docs for the [latest CI build][latest-api].
 
 If you are interested in using Immutant inside a [WildFly] container,
 see our [WildFly guide].
 
-[builds]: http://immutant.org/builds/2x/
-[latest-api]: https://projectodd.ci.cloudbees.com/job/immutant2-incremental/lastSuccessfulBuild/artifact/target/apidocs/index.html
+[builds]: http://cloboss.org/builds/2x/
+[latest-api]: https://projectodd.ci.cloudbees.com/job/cloboss2-incremental/lastSuccessfulBuild/artifact/target/apidocs/index.html
 [Compojure]: https://github.com/weavejester/compojure
 [Luminus]: http://www.luminusweb.net/
 [WildFly]: http://wildfly.org/

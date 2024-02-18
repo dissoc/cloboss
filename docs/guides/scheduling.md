@@ -1,19 +1,19 @@
 ---
 {:title "Scheduling"
  :sequence 3
- :base-ns immutant.scheduling
+ :base-ns cloboss.scheduling
  :description "Schedule asynchronous jobs"}
 ---
 
 If you're coming from Immutant 1.x, you'll notice that the scheduling
 namespace and artifact have been renamed (what used to be
-`immutant.jobs` and `org.immutant/immutant-jobs` is now
-`immutant.scheduling` and `org.immutant/scheduling`), and the API has
+`cloboss.jobs` and `org.cloboss/cloboss-jobs` is now
+`cloboss.scheduling` and `org.cloboss/scheduling`), and the API has
 changed a bit.  It's still based on Quartz 2.2, though.
 
 ## The API
 
-At first glance, the API for [[immutant.scheduling]] appears bigger than
+At first glance, the API for [[cloboss.scheduling]] appears bigger than
 it really is, but there are only two essential functions:
 
 * [[schedule]] - for scheduling your jobs
@@ -64,11 +64,11 @@ This result can be passed to `stop` to cancel the job.
 ### Some Examples
 
 If you haven't already, you should read through the [installation]
-guide and require the `immutant.scheduling` namespace at a REPL to
+guide and require the `cloboss.scheduling` namespace at a REPL to
 follow along:
 
 ```clojure
-(require '[immutant.scheduling :refer :all])
+(require '[cloboss.scheduling :refer :all])
 ```
 
 We'll need a job to schedule. Here's one!
@@ -146,9 +146,9 @@ of the following are equivalent:
 ### Supports Joda clj-time
 
 If you're using the [clj-time] library in your project, you can load
-the [[immutant.scheduling.joda]] namespace. This will extend
+the [[cloboss.scheduling.joda]] namespace. This will extend
 `org.joda.time.DateTime` instances to the
-[[immutant.coercions/AsTime]] protocol, enabling them to be used as
+[[cloboss.coercions/AsTime]] protocol, enabling them to be used as
 arguments to `at` and `until`, e.g.
 
 ```clojure
@@ -161,8 +161,8 @@ arguments to `at` and `until`, e.g.
       (until (plus t (hours 8))))))
 ```
 
-The `immutant.scheduling.joda` namespace also provides
-[[immutant.scheduling.joda/schedule-seq]].  Inspired by [chime-at], it
+The `cloboss.scheduling.joda` namespace also provides
+[[cloboss.scheduling.joda/schedule-seq]].  Inspired by [chime-at], it
 takes not a specification map but a sequence of times, as might be
 returned from `clj-time.periodic/periodic-seq`, subject to the
 application of any of Clojure's core sequence-manipulating functions.
@@ -179,7 +179,7 @@ schedule that with a [Quartz-style] cron spec:
 And here's the same schedule using a lazy sequence:
 
 ```clojure
-(require '[immutant.scheduling.joda :refer [schedule-seq]]
+(require '[cloboss.scheduling.joda :refer [schedule-seq]]
          '[clj-time.core            :refer [today-at days]]
          '[clj-time.periodic        :refer [periodic-seq]]
          '[clj-time.predicates      :refer [weekday?]])
@@ -200,9 +200,9 @@ to take more than a week to run! ;)
 
 If you need access to the internal Quartz scheduler instance (maybe to
 pass to another Quartz-based scheduling library like [Quartzite]), use
-[[immutant.scheduling.quartz/quartz-scheduler]]. You just need to pass
+[[cloboss.scheduling.quartz/quartz-scheduler]]. You just need to pass
 it the same scheduler options you can pass to
-[[immutant.scheduling/schedule]].
+[[cloboss.scheduling/schedule]].
 
 [Quartz-style]: http://quartz-scheduler.org/documentation/quartz-2.2.x/tutorials/tutorial-lesson-06
 [installation]: guide-installation.html

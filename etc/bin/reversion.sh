@@ -6,9 +6,9 @@ new_version="\"$1\""
 
 echo "Transforming from ${old_version} to ${new_version}"
 
-for f in `find . -name project.clj`; do 
+for f in `find . -name project.clj`; do
   sed -r "s/(defproject [^\"]*)${old_version}/\1${new_version}/" -i ${f}
 done
 
 # also transform top level project :version entry
-sed -r "s/(org.immutant[ ]*)${old_version}/\1${new_version}/" -i project.clj
+sed -r "s/(org.cloboss[ ]*)${old_version}/\1${new_version}/" -i project.clj

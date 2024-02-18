@@ -12,12 +12,12 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-(defproject org.immutant/caching "2.1.11-SNAPSHOT"
+(defproject org.cloboss/caching "2.1.11-SNAPSHOT"
   :description "Create, manage and manipulate Infinispan caches."
   :plugins [[lein-modules "0.3.11"]]
 
-  :dependencies [[org.immutant/core _]
-                 [org.projectodd.wunderboss/wunderboss-caching _]]
+  :dependencies [[org.cloboss/core "2.1.11-SNAPSHOT"]
+                 [org.projectodd.atticboss/atticboss-caching "0.13.2-SNAPSHOT"]]
 
   :profiles {:dev
              {:dependencies [[cheshire _]

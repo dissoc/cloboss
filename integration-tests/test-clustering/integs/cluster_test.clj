@@ -17,7 +17,7 @@
             [clojure.test :refer :all]
             [environ.core :refer (env)]
             [integs.cluster-help :refer (get-as-data stop start mark) :as u]
-            [immutant.messaging :as msg]))
+            [cloboss.messaging :as msg]))
 
 (def opts {:host "localhost", :username "testuser", :password "testuser1!" :remote-type :hornetq-wildfly})
 (def port u/http-port)

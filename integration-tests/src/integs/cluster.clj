@@ -13,12 +13,12 @@
 ;; limitations under the License.
 
 (ns integs.cluster
-  (:require [immutant.messaging  :as m]
-            [immutant.caching    :as c]
-            [immutant.scheduling :as s]
-            [immutant.web        :as w]
-            [immutant.web.middleware :refer (wrap-session)]
-            [immutant.daemons        :refer (singleton-daemon)]
+  (:require [cloboss.messaging  :as m]
+            [cloboss.caching    :as c]
+            [cloboss.scheduling :as s]
+            [cloboss.web        :as w]
+            [cloboss.web.middleware :refer (wrap-session)]
+            [cloboss.daemons        :refer (singleton-daemon)]
             [ring.util.response      :refer (response)]))
 
 (def cache (c/cache "cluster-test", :transactional? true, :locking :pessimistic))
@@ -44,4 +44,4 @@
   (m/queue "/queue/cluster", :durable? false)
   (w/run (-> #'counter wrap-session) :path "/counter")
   (w/run (fn [_] (response (with-out-str (pr cache)))) :path "/cache")
-  (w/run (fn [_] (response (with-out-str (pr (immutant.util/in-cluster?))))) :path "/in-cluster"))
+  (w/run (fn [_] (response (with-out-str (pr (cloboss.util/in-cluster?))))) :path "/in-cluster"))

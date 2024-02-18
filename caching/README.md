@@ -5,14 +5,14 @@
 Leiningen:
 
 ``` clj
-[org.immutant/caching "2.1.10"]
+[org.cloboss/caching "2.1.10"]
 ```
 
 Maven:
 
 ``` xml
 <dependency>
-  <groupId>org.immutant</groupId>
+  <groupId>org.cloboss</groupId>
   <artifactId>caching</artifactId>
   <version>2.1.10</version>
 </dependency>

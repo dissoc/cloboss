@@ -20,7 +20,7 @@ will be handled by Logback, as will anything your app logs via
 clojure.tools.logging).
 
 You can adjust the root logging level at runtime by calling
-[[immutant.util/set-log-level!]]. **Note**: this will only work if
+[[cloboss.util/set-log-level!]]. **Note**: this will only work if
 Logback is actually being used, and not replaced with another
 implementation as we discuss below.
 
@@ -37,7 +37,7 @@ console, with some of the chattier libraries we bring in configured at
     23:58:53.313 INFO  [my-app.core] (main) an info message
     23:58:53.313 WARN  [my-app.core] (main) a warning message
     23:58:53.313 ERROR [my-app.core] (main) an error message
-    23:58:53.450 INFO  [org.projectodd.wunderboss.web.Web] (main) Registered web context /
+    23:58:53.450 INFO  [org.projectodd.atticboss.web.Web] (main) Registered web context /
 
 The [default configuration] is only applied when Logback is available
 and you don't provide an overriding configuration in your application.
@@ -64,7 +64,7 @@ can modify your `:dependencies` like so:
 ```clojure
 
   :dependencies [...
-                 [org.immutant/immutant "{{version}}"
+                 [org.cloboss/cloboss "{{version}}"
                    :exclusions [ch.qos.logback/logback-classic]]
                  [org.apache.logging.log4j/log4j-core "2.0.2"]
                  [org.apache.logging.log4j/log4j-slf4j-impl "2.0.2"]]
@@ -111,7 +111,7 @@ to do a little bit of work.
 First, you'll need to modify the `jboss-deployment-structure.xml` file
 that gets placed in the war's `WEB-INF/` directory. To get it, run:
 
-    lein immutant war
+    lein cloboss war
 
 In addition to generating a war file, this also dumps a copy of the
 default `jboss-deployment-structure.xml` to `target/`. Grab that and
@@ -126,7 +126,7 @@ Second, in order for your custom resources to be included in the war
 file, you'll need to add the following to your `project.clj`:
 
 ```clojure
-  :immutant {:war {:resource-paths ["war-resources"]}}
+  :cloboss {:war {:resource-paths ["war-resources"]}}
 ```
 
 Once you disable the logging subsystem, you can now provide a custom
@@ -149,8 +149,8 @@ information on running your application in WildFly, see our
 [Timbre]: https://github.com/ptaoussanis/timbre
 [myriad options]: http://logback.qos.ch/manual/index.html
 [logback.xml]: http://logback.qos.ch/manual/configuration.html
-[default configuration]: https://github.com/projectodd/wunderboss/blob/{{wunderboss-tag}}/core/src/main/resources/logback-default.xml
-[incremental build]: http://immutant.org/builds/2x/
+[default configuration]: https://github.com/projectodd/atticboss/blob/{{atticboss-tag}}/core/src/main/resources/logback-default.xml
+[incremental build]: http://cloboss.org/builds/2x/
 [logging documentation]: https://docs.jboss.org/author/display/WFLY8/Logging+Configuration
 [WildFly]: http://wildfly.org/
 [Log4j]: http://logging.apache.org/log4j/2.x/

@@ -62,7 +62,7 @@ it is easy, too:
 Pass it `-h` to see what options it supports. The main one you'll use
 is `-c` which refers to one of its config files beneath
 `standalone/configuration`. The default config doesn't include
-HornetQ, for example, so to use `immutant.messaging`, you'll need to
+HornetQ, for example, so to use `cloboss.messaging`, you'll need to
 start WildFly as follows:
 
     $ wildfly-9.0.2.Final/bin/standalone.sh -c standalone-full.xml
@@ -73,18 +73,18 @@ And if you want clustering...
 
 You can create your own, of course, too.
 
-## The lein-immutant plugin
+## The lein-cloboss plugin
 
-The [lein-immutant] plugin was fundamental to developing apps for
+The [lein-cloboss] plugin was fundamental to developing apps for
 Immutant 1.x. In 2.x, it's only required if you wish to deploy
 your Clojure apps to WildFly, and its formerly numerous tasks have
-been reduced to two: `immutant war` and `immutant test`. Add the
+been reduced to two: `cloboss war` and `cloboss test`. Add the
 latest version to the `:plugins` section of your `project.clj` to
 install it, e.g.
 
-    :plugins [[lein-immutant "2.1.0"]]
+    :plugins [[lein-cloboss "2.1.0"]]
 
-*Note:* If you are a [boot] user, we have a [boot-immutant plugin]
+*Note:* If you are a [boot] user, we have a [boot-cloboss plugin]
 as well.
 
 ### Creating a war file
@@ -98,44 +98,44 @@ beneath `target/` after you run the war task in your project, along
 with an *uberjar* containing your app plus its dependencies, and
 finally a war file packaging it all up together:
 
-    $ lein immutant war
+    $ lein cloboss war
 
-The `immutant war` task provides a number of configuration options,
-all of which can be specified both in the `[:immutant :war]` path of
+The `cloboss war` task provides a number of configuration options,
+all of which can be specified both in the `[:cloboss :war]` path of
 `project.clj` and as command line arguments, with the latter taking
 precedence.
 
 For a detailed description of each option:
 
-    $ lein help immutant deployment
+    $ lein help cloboss deployment
 
 For a brief listing of just the command line switches:
 
-    $ lein help immutant war
+    $ lein help cloboss war
 
-### org.immutant/wildfly
+### org.cloboss/wildfly
 
 Automatically included in an Immutant war file is a library that makes
-the [[immutant.wildfly]] namespace available to your app. This
+the [[cloboss.wildfly]] namespace available to your app. This
 contains functions that are only relevant when your app is running in
 the [WildFly] container. If your app relies on these functions and you
 need to compile them outside the container, you must explicitly depend
-on `org.immutant/wildfly` in your `project.clj`:
+on `org.cloboss/wildfly` in your `project.clj`:
 
 ```clojure
 (defproject some-project "1.2.3"
   ...
-  :dependencies [[org.immutant/immutant "{{version}}"]
-                 [org.immutant/wildfly "{{version}}"]]
+  :dependencies [[org.cloboss/cloboss "{{version}}"]
+                 [org.cloboss/wildfly "{{version}}"]]
 ```
 
 ### Running tests in-container
 
 Although you no longer need to run a container to test your
 applications' use of the Immutant libraries, it is still possible via
-the `immutant test` task.
+the `cloboss test` task.
 
-    $ lein immutant test -j /srv/wildfly
+    $ lein cloboss test -j /srv/wildfly
 
 It will find all the tests (or [Midje] facts, or [Expectations]
 expectations) in a project, fire up the [WildFly] instance installed
@@ -153,16 +153,16 @@ The server config and log output for the WildFly instance used for the
 test run can be found beneath your project's
 `target/isolated-wildfly/` directory.
 
-Similar to the `immutant war` task, configuration of the `immutant
-test` task may be specified in either the `[:immutant :test]` path of
+Similar to the `cloboss war` task, configuration of the `cloboss
+test` task may be specified in either the `[:cloboss :test]` path of
 `project.clj` or as command line arguments. For a detailed description
 of each option:
 
-    $ lein help immutant testing
+    $ lein help cloboss testing
 
 And for a brief listing of just the command line switches:
 
-    $ lein help immutant test
+    $ lein help cloboss test
 
 ## Deploying to WildFly
 
@@ -172,12 +172,12 @@ directory that is monitored by WildFly for artifacts to deploy.
 Assuming you installed WildFly in `/srv/wildfly`, that path is
 `/srv/wildfly/standalone/deployments`. For example:
 
-    $ lein immutant war
+    $ lein cloboss war
     $ cp target/myapp.war /srv/wildfly/standalone/deployments
 
 Alternatively,
 
-    $ lein immutant war -o /srv/wildfly
+    $ lein cloboss war -o /srv/wildfly
 
 If not already running, fire up WildFly to see your deployed app:
 
@@ -186,7 +186,7 @@ If not already running, fire up WildFly to see your deployed app:
 ## Running Ring Handlers in WildFly
 
 When running inside WildFly, the `:host` and `:port` options to
-`immutant.web/run` are silently ignored since your handlers are
+`cloboss.web/run` are silently ignored since your handlers are
 mounted on WildFly's internal Undertow server, bound to whatever
 host/port it's been configured for.
 
@@ -196,7 +196,7 @@ path will prefix whatever `:path` option you specified. To override
 this and set your context path to "/" instead, name your war file
 `ROOT.war`:
 
-    $ lein immutant war -o /srv/wildfly -n ROOT
+    $ lein cloboss war -o /srv/wildfly -n ROOT
 
 ## Initialization Caveats
 
@@ -207,12 +207,12 @@ initialization in WildFly:
   complete - deployment will not finish until it does. If it doesn't
   return within 4 minutes, the deployment will be aborted. If you need
   more than 4 minutes, you can override the default with
-  `-Dwunderboss.deployment.timeout=<n seconds>`. Note that if you set
+  `-Datticboss.deployment.timeout=<n seconds>`. Note that if you set
   that to more than 5 minutes, you will also need to increase
   WildFly's own coarser grained deployment timeout with
   `-Djboss.as.management.blocking.timeout=<m seconds>`.
 
-* Any `immutant.web/run` calls *have* to occur before `:main`
+* Any `cloboss.web/run` calls *have* to occur before `:main`
   returns. A limitation of the JavaEE specification prevents us from
   registering any servlets after that point.
 
@@ -227,9 +227,9 @@ Due to
 [a locking issue around sessions](https://issues.jboss.org/browse/WFLY-3715),
 HTTP streams have a couple of limitations in WildFly 8.2, namely:
 
-* [[immutant.web.async/send!]] calls to a stream are actually synchronous
+* [[cloboss.web.async/send!]] calls to a stream are actually synchronous
   instead of asynchronous
-* you cannot pass a `:timeout` to [[immutant.web.async/as-channel]] -
+* you cannot pass a `:timeout` to [[cloboss.web.async/as-channel]] -
   doing so will trigger an exception
 
 We recommend you upgrade to WildFly 9.0.0 or newer if you intend to
@@ -255,7 +255,7 @@ If using `standalone.xml` or `standalone-full.xml`, change the `web` cache conta
         <transaction mode="BATCH"/>
         <file-store passivation="true" purge="false"/>
       </local-cache>
-      
+
       <local-cache name="persistent">
         <locking isolation="READ_COMMITTED"/>
         <transaction mode="BATCH"/>
@@ -265,23 +265,23 @@ If using `standalone.xml` or `standalone-full.xml`, change the `web` cache conta
 
 Or, for `standalone-ha.xml` or `standalone-ha-full.xml`:
 
-    <cache-container name="web" default-cache="repl" module="org.wildfly.clustering.web.infinispan">  
-      <transport lock-timeout="60000"/>  
-      <replicated-cache name="repl" mode="ASYNC" batching="true">  
-        <transaction locking="OPTIMISTIC"/>  
-        <locking isolation="READ_COMMITTED"/>  
-        <file-store/>  
-      </replicated-cache>  
-    </cache-container>  
+    <cache-container name="web" default-cache="repl" module="org.wildfly.clustering.web.infinispan">
+      <transport lock-timeout="60000"/>
+      <replicated-cache name="repl" mode="ASYNC" batching="true">
+        <transaction locking="OPTIMISTIC"/>
+        <locking isolation="READ_COMMITTED"/>
+        <file-store/>
+      </replicated-cache>
+    </cache-container>
 
 For more details on the plethora of available options, see the [Infinispan User Guide].
 
 
 [WildFly]: http://wildfly.org
 [Red Hat JBoss Enterprise Application Platform]: http://www.jboss.org/products/eap/overview/
-[lein-immutant]: https://github.com/immutant/lein-immutant/
+[lein-cloboss]: https://github.com/cloboss/lein-cloboss/
 [boot]: http://boot-clj.com/
-[boot-immutant plugin]: https://github.com/immutant/boot-immutant
+[boot-cloboss plugin]: https://github.com/cloboss/boot-cloboss
 [Midje]: https://github.com/marick/Midje
 [Expectations]: http://jayfields.com/expectations/
 [logging guide]: guide-logging.html

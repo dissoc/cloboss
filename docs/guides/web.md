@@ -1,11 +1,11 @@
 ---
 {:title "Web"
  :sequence 1.5
- :base-ns immutant.web
+ :base-ns cloboss.web
  :description "Running Clojure web applications"}
 ---
 
-The `org.immutant/web` library changed quite a bit from Immutant 1.x
+The `org.cloboss/web` library changed quite a bit from Immutant 1.x
 to 2.x, both its API and its foundation: the [Undertow] web server.
 Among other things, this resulted in
 [much better performance](https://github.com/ptaoussanis/clojure-web-server-benchmarks)
@@ -14,7 +14,7 @@ WebSockets.
 
 ## The Namespaces
 
-The primary namespace, [[immutant.web]], includes the two main functions
+The primary namespace, [[cloboss.web]], includes the two main functions
 you'll use to run your handlers:
 
 * `run` - runs your handler in a specific environment, responding to
@@ -29,7 +29,7 @@ Also included:
 * `server` - provides finer-grained control over the embedded web
   server hosting your handler[s].
 
-The [[immutant.web.middleware]] namespace provides some Ring
+The [[cloboss.web.middleware]] namespace provides some Ring
 middleware:
 
 * `wrap-websocket` - attach websocket callbacks to your Ring handler
@@ -39,11 +39,11 @@ middleware:
 * `wrap-development` - included automatically by `run-dmc`, this
   aggregates some middleware handy during development.
 
-The [[immutant.web.async]] namespace enables the creation of
+The [[cloboss.web.async]] namespace enables the creation of
 [WebSockets] and [HTTP streams]. And support for [Server-Sent Events]
-is provided by [[immutant.web.sse]].
+is provided by [[cloboss.web.sse]].
 
-The [[immutant.web.undertow]] namespace exposes tuning options for
+The [[cloboss.web.undertow]] namespace exposes tuning options for
 Undertow, the ability to open additional listeners, and flexible SSL
 configuration.
 
@@ -53,11 +53,11 @@ Now, let's fire up a REPL and work through some of the features of the
 library.
 
 If you haven't already, you should read through the [installation]
-guide and require the `immutant.web` namespace at a REPL to follow
+guide and require the `cloboss.web` namespace at a REPL to follow
 along:
 
 ```clojure
-(require '[immutant.web :refer :all])
+(require '[cloboss.web :refer :all])
 ```
 
 ### Common Usage
@@ -185,11 +185,11 @@ as each has a unique combination of `:virtual-host` and `:path`.
 
 ## Advanced Undertow Configuration
 
-The [[immutant.web.undertow]] namespace includes a number of
+The [[cloboss.web.undertow]] namespace includes a number of
 composable functions that turn a map of various keywords into a map
 containing an `io.undertow.Undertow$Builder` instance mapped to the
 keyword, `:configuration`. So Undertow configuration is exposed via a
-composite of these functions called [[immutant.web.undertow/options]].
+composite of these functions called [[cloboss.web.undertow/options]].
 
 For a contrived example, say we wanted our handler to run with 42
 worker threads, and listen for requests on two ports, 8888 and 9999.
@@ -197,7 +197,7 @@ Weird, but possible. To do it, we'll need to pass the `:port` option
 twice, in a manner of speaking:
 
 ```clojure
-(require '[immutant.web.undertow :refer (options)])
+(require '[cloboss.web.undertow :refer (options)])
 (def opts (-> (options :port 8888 :worker-threads 42)
             (assoc :port 9999)
             options))
@@ -215,7 +215,7 @@ You may also pass a `KeyStore` instance or a path to one on disk, and
 the `SSLContext` will be created for you. For example,
 
 ```clojure
-(run app (immutant.web.undertow/options
+(run app (cloboss.web.undertow/options
            :ssl-port 8443
            :keystore "/path/to/keystore.jks"
            :key-password "password"))
@@ -226,7 +226,7 @@ along these lines:
 
 ```clojure
 (def context (less.awful.ssl/ssl-context "client.pkcs8" "client.crt" "ca.crt"))
-(run app (immutant.web.undertow/options
+(run app (cloboss.web.undertow/options
            :ssl-port 8443
            :ssl-context context))
 ```
@@ -266,7 +266,7 @@ a very simple [Pedestal] service running on Immutant:
   (:require [io.pedestal.http :as http]
             [io.pedestal.http.route.definition :refer [defroutes]]
             [ring.util.response :refer [response]]
-            [immutant.web :refer [run]]))
+            [cloboss.web :refer [run]]))
 
 (defn home-page [request] (response "Hello World!"))
 (defroutes routes [[["/" {:get home-page}]]])
@@ -292,12 +292,12 @@ them within a single threaded call.
 ## Asynchrony
 
 [WebSockets], [HTTP streams], and [Server-Sent Events] are all enabled
-by the [[immutant.web.async/as-channel]] function, which should be
+by the [[cloboss.web.async/as-channel]] function, which should be
 called from your Ring handler, as it takes a request map and some
 callbacks and returns a valid response map. Its polymorphic design
 enables graceful degradation from bidirectional WebSockets to
 unidirectional chunked responses, e.g. streams. In either case, data
-is sent from the server using [[immutant.web.async/send!]].
+is sent from the server using [[cloboss.web.async/send!]].
 
 It's important to note that `as-channel` returns a normal Ring
 response map, so it's completely compatible with Ring middleware that
@@ -326,7 +326,7 @@ Creating chunked responses is straightforward, as the following Ring
 handler demonstrates:
 
 ```clojure
-(require '[immutant.web.async :as async])
+(require '[cloboss.web.async :as async])
 
 (defn app [request]
   (async/as-channel request
@@ -400,7 +400,7 @@ as well as WebSockets.
 
 Immutant provides a convenient Ring middleware function that
 encapsulates the check for the upgrade request:
-[[immutant.web.middleware/wrap-websocket]].
+[[cloboss.web.middleware/wrap-websocket]].
 
 ```clojure
 (web/run (-> my-app
@@ -410,9 +410,9 @@ encapsulates the check for the upgrade request:
 But using `wrap-websocket` means losing the `request` closure in your
 Ring handler, representing the original WebSocket upgrade request from
 the client. You can still access it, however, with
-[[immutant.web.async/originating-request]].
+[[cloboss.web.async/originating-request]].
 
-Note the `:path` argument to [[immutant.web/run]] applies to both the
+Note the `:path` argument to [[cloboss.web/run]] applies to both the
 Ring handler and the WebSocket, distinguished only by the request
 protocol. Given a `:path` of "/foo", for example, you'd have both
 `http://your.host.com/foo` and `ws://your.host.com/foo`.
@@ -421,9 +421,9 @@ protocol. Given a `:path` of "/foo", for example, you'd have both
 
 [Server-Sent Events] are a stream of specially-formatted chunked
 responses with a `Content-Type` header of `text/event-stream`. The
-[[immutant.web.sse]] namespace provides its own `send!` and
+[[cloboss.web.sse]] namespace provides its own `send!` and
 `as-channel` functions that are composed from their
-[[immutant.web.async]] counterparts. *Events* are polymorphic: any
+[[cloboss.web.async]] counterparts. *Events* are polymorphic: any
 `Object` other than a `Collection` or `Map` is considered a simple
 data field that will be string-ified, prefixed with "data:", and
 suffixed with "\n". A `Collection` represents a multi-line data field.
@@ -433,7 +433,7 @@ And a `Map` is expected to contain at least one of the following keys:
 Let's modify the HTTP streaming example to use SSE:
 
 ```clojure
-(require '[immutant.web.sse :as sse])
+(require '[cloboss.web.sse :as sse])
 
 (defn app [request]
   (sse/as-channel request
@@ -487,7 +487,7 @@ can also provide an `:on-error` callback to know when an error occurs:
 We maintain a Leiningen project called the [Immutant Feature Demo]
 demonstrating all the Immutant namespaces, including simple examples
 of
-[the features described herein](https://github.com/immutant/feature-demo/blob/master/src/demo/web.clj).
+[the features described herein](https://github.com/cloboss/feature-demo/blob/master/src/demo/web.clj).
 
 You should be able to clone it somewhere, cd there, and `lein run`.
 
@@ -502,7 +502,7 @@ Have fun!
 [Caribou]: http://let-caribou.in/
 [ring-devel]: https://github.com/ring-clojure/ring/tree/master/ring-devel
 [WebSockets]: http://en.wikipedia.org/wiki/WebSocket
-[Immutant Feature Demo]: https://github.com/immutant/feature-demo
+[Immutant Feature Demo]: https://github.com/cloboss/feature-demo
 [less-awful-ssl]: https://github.com/aphyr/less-awful-ssl
 [Server-Sent Events]: http://www.w3.org/TR/eventsource/
 [HTTP streams]: http://en.wikipedia.org/wiki/Chunked_transfer_encoding

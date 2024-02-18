@@ -12,13 +12,18 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-(defproject org.immutant/core "2.1.11-SNAPSHOT"
+(defproject org.cloboss/core "2.1.11-SNAPSHOT"
   :description "Utilities shared by Immutant libs."
   :plugins [[lein-modules "0.3.11"]]
 
-  :dependencies [[org.clojure/java.classpath _]
-                 [org.clojure/tools.reader _]]
+  :dependencies [;;[org.clojure/java.classpath _]
+                 [org.clojure/java.classpath "0.2.3"]
+                 ;;[org.clojure/tools.reader _]
+                 [org.clojure/tools.reader "1.3.7"]]
 
   :profiles {:dev
-             {:dependencies [[cheshire _]
-                             [org.clojure/data.fressian _]]}})
+
+             {:dependencies [[cheshire "5.12.0"]
+                             ;;[cheshire _]
+                             ;;[org.clojure/data.fressian _]
+                             [org.clojure/data.fressian "1.0.0"]]}})

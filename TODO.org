@@ -1,0 +1,14 @@
+* replace or fix lein modules
+lein-parent or lein replace possible solutions
+or debug lein-modules
+* caching
+** if cache persist and is passed as true make directory as cache name or update documentation
+** eviction strategy now only has NONE, MANUAL, REMOVE, AND EXCEPTION update docs
+*** NONE
+Eviction Strategy where nothing is done by the cache and the user is probably not going to use eviction manually
+*** MANUAL
+Strategy where the cache does nothing but the user is assumed to manually invoke evict method
+*** REMOVE
+Strategy where the cache will remove entries to make room for new ones while staying under the configured size
+*** EXCEPTION
+Strategy where the cache will block new entries from being written if they would exceed the configured size
