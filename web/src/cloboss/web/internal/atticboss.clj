@@ -20,9 +20,9 @@
               [cloboss.util              :refer [in-container? context-path http-port]]
               [cloboss.web.middleware    :refer [wrap-development]]
               [clojure.java.browse        :refer [browse-url]])
-    (:import org.projectodd.atticboss.AtticBoss
+    (:import top.atticboss.AtticBoss
              [java.util Map LinkedHashMap]
-             [org.projectodd.atticboss.web Web Web$CreateOption Web$RegisterOption]
+             [top.atticboss.web Web Web$CreateOption Web$RegisterOption]
              jakarta.servlet.Servlet
              [java.net ServerSocket InetSocketAddress]))
 

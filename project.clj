@@ -12,7 +12,7 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-(defproject org.cloboss/cloboss-parent "2.1.11-SNAPSHOT"
+(defproject org.cloboss/cloboss-parent "2.2.0-SNAPSHOT"
   :description "Parent for all that is Cloboss"
   :plugins [[lein-modules "0.3.11"]]
   :packaging "pom"
@@ -35,7 +35,7 @@
                                "caching" "core" "messaging" "scheduling" "transactions" "web" "wildfly"]
             "docs" ["do" "modules" "doc-index" "," "docs-from-index"]}
   :modules  {:subprocess nil
-             :inherited {:dependencies [[org.projectodd.atticboss/atticboss-clojure _]
+             :inherited {:dependencies [[top.atticboss/atticboss-clojure _]
                                         [org.clojure/clojure _]]
                          :aliases {"-i" ^:replace ["with-profile" "+integs"]
                                    "doc-index" ^:replace ["build-helper" "docs" "generate-index"]
@@ -71,14 +71,13 @@
                         clj-http                   "3.12.3"
                         environ                    "1.0.3"
 
-                        org.projectodd.atticboss  "0.13.2-SNAPSHOT"
-                        org.projectodd.atticboss/atticboss-messaging-artemis "0.13.2-SNAPSHOT"
-                        ;; org.projectodd.atticboss  "1.x.incremental.321"
-                        ;; org.projectodd.atticboss  "0.13.2-SNAPSHOT"
+                        top.atticboss  "0.14.0-SNAPSHOT"
+                        top.atticboss/atticboss-messaging-artemis "0.14.0-SNAPSHOT"
+                        ;; top.atticboss  "1.x.incremental.321"
+                        ;; top.atticboss  "0.14.0-SNAPSHOT"
 
                         org.cloboss               :version
                         fntest                     "2.0.8"}}
-
   :release-tasks  [["vcs" "assert-committed"]
 
                    ["change" "version" "leiningen.release/bump-version" "release"]

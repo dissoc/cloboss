@@ -29,7 +29,7 @@
             [clojure.tools.reader     :as r]
             [cloboss.internal.util   :refer [kwargs-or-map->map try-resolve
                                               try-resolve-throw]])
-  (:import [org.projectodd.atticboss.codecs BytesCodec Codec Codecs None StringCodec]
+  (:import [top.atticboss.codecs BytesCodec Codec Codecs None StringCodec]
            java.nio.ByteBuffer))
 
 (defmacro ^:internal ^:no-doc data-readers []
@@ -56,8 +56,8 @@
   (let [{:keys [name content-type type encode decode] :or {type :string}}
         (kwargs-or-map->map settings)]
     `(proxy [~(if (= :bytes type)
-                'org.projectodd.atticboss.codecs.BytesCodec
-                'org.projectodd.atticboss.codecs.StringCodec)]
+                'top.atticboss.codecs.BytesCodec
+                'top.atticboss.codecs.StringCodec)]
          [(clojure.core/name ~name) ~content-type]
        (encode [data#]
          (~encode data#))

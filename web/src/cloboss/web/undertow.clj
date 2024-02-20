@@ -23,7 +23,7 @@
            io.undertow.server.HttpHandler
            io.undertow.server.handlers.GracefulShutdownHandler
            [org.xnio Options SslClientAuthMode]
-           [org.projectodd.atticboss.web Web$CreateOption Web$RegisterOption]))
+           [top.atticboss.web Web$CreateOption Web$RegisterOption]))
 
 (defn ^HttpHandler http-handler
   "Create an Undertow `HttpHandler` instance from a Ring handler function"

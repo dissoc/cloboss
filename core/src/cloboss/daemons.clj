@@ -16,8 +16,8 @@
   "Asynchronous, highly-available services that share the lifecycle of
    your application."
   (:require [cloboss.internal.options :as o])
-  (:import org.projectodd.atticboss.AtticBoss
-           [org.projectodd.atticboss.ec
+  (:import top.atticboss.AtticBoss
+           [top.atticboss.ec
             DaemonContext
             DaemonContext$CreateOption
             DaemonContext$StopCallback]))

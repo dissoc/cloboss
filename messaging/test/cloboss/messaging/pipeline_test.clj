@@ -17,8 +17,8 @@
             [cloboss.messaging :as msg]
             [clojure.test :refer :all]
             [cloboss.util :as u])
-  (:import org.projectodd.atticboss.AtticBoss
-           org.projectodd.atticboss.messaging.Queue))
+  (:import top.atticboss.AtticBoss
+           top.atticboss.messaging.Queue))
 
 (use-fixtures :once
   (fn [f]

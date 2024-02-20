@@ -16,7 +16,7 @@
   (:require [clojure.test :refer :all]
             [cloboss.messaging :refer :all]
             [cloboss.util :as u])
-  (:import org.projectodd.atticboss.messaging.Context))
+  (:import top.atticboss.messaging.Context))
 
 (u/set-log-level! (or (System/getenv "LOG_LEVEL") :OFF))
 

@@ -15,7 +15,7 @@
 (ns ^:no-doc cloboss.caching.options
   "Spruces up some of the option values"
   (:require [cloboss.coercions :refer (as-period)])
-  (:import [org.projectodd.atticboss.caching.notifications Handler Listener]))
+  (:import [top.atticboss.caching.notifications Handler Listener]))
 
 (defn kw->str [kw] (.replace (name kw) \- \_))
 

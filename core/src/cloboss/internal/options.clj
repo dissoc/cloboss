@@ -14,7 +14,7 @@
 
 (ns ^:no-doc ^:internal cloboss.internal.options
   "Functions for validating options."
-  (:import [org.projectodd.atticboss Option]))
+  (:import [top.atticboss Option]))
 
 (defn ->var [x]
   (if (var? x) x (resolve x)))

@@ -19,8 +19,8 @@
             [cloboss.internal.util       :as iu]
             [cloboss.util                :as u]
             [cloboss.scheduling.options  :refer [resolve-options defoption]])
-  (:import org.projectodd.atticboss.AtticBoss
-           [org.projectodd.atticboss.scheduling
+  (:import top.atticboss.AtticBoss
+           [top.atticboss.scheduling
             Scheduling Scheduling$CreateOption Scheduling$ScheduleOption]))
 
 (defn schedule

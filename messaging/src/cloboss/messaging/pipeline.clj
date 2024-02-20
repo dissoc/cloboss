@@ -73,7 +73,7 @@
             [cloboss.util               :as pu])
   (:import java.util.UUID
            java.util.concurrent.TimeoutException
-           org.projectodd.atticboss.messaging.Message))
+           top.atticboss.messaging.Message))
 
 (def ^:dynamic *pipeline*
   "The currently active pipeline fn. Will be bound within the

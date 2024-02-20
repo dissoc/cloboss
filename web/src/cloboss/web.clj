@@ -18,7 +18,7 @@
                                                validate-options extract-options]]
             [cloboss.internal.util    :refer [kwargs-or-map->map try-resolve]]
             [cloboss.web.internal.atticboss :as wboss])
-  (:import [org.projectodd.atticboss.web Web Web$CreateOption Web$RegisterOption]))
+  (:import [top.atticboss.web Web Web$CreateOption Web$RegisterOption]))
 
 (defn run
   "Runs `handler` with the given `options`.

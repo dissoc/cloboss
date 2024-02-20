@@ -228,7 +228,7 @@
 
 (defn add-atticboss-tag [{:keys [versions] :as options}]
   (assoc options
-    :atticboss-tag (let [version (versions 'org.projectodd.atticboss)]
+    :atticboss-tag (let [version (versions 'top.atticboss)]
                       (if (re-find #"^\d+\.\d+\.\d+$" version)
                         version
                         "master"))))

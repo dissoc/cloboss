@@ -20,10 +20,10 @@
             [cloboss.util :refer [in-eap?]]
             [cloboss.web.async :as async])
 
-  (:import [org.projectodd.atticboss.web.async Channel
+  (:import [top.atticboss.web.async Channel
                                                 Channel$OnOpen Channel$OnClose Channel$OnError
                                                 ServletHttpChannel]
-           [org.projectodd.atticboss.web.async.websocket DelegatingJavaxEndpoint
+           [top.atticboss.web.async.websocket DelegatingJavaxEndpoint
                                                           JavaxWebsocketChannel WebSocketHelpyHelpertonFilter
                                                           WebsocketChannel WebsocketChannel$OnMessage
                                                           WebsocketConnectionAbortException]

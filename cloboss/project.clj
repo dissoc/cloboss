@@ -12,15 +12,15 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-(defproject org.cloboss/cloboss "2.1.11-SNAPSHOT"
+(defproject org.cloboss/cloboss "2.2.0-SNAPSHOT"
   :description "A catch-all pom that brings in all Immutant libs."
   :plugins [[lein-modules "0.3.11"]]
   :packaging "pom"
 
-  :dependencies [[org.cloboss/core "2.1.11-SNAPSHOT"]
-                 [org.cloboss/caching "2.1.11-SNAPSHOT"]
-                 [org.cloboss/messaging "2.1.11-SNAPSHOT"]
-                 [org.cloboss/scheduling "2.1.11-SNAPSHOT"]
-                 [org.cloboss/web "2.1.11-SNAPSHOT"]
-                 [org.cloboss/transactions "2.1.11-SNAPSHOT"]
-                 [org.projectodd.atticboss/atticboss-messaging-artemis "0.13.2-SNAPSHOT"]])
+  :dependencies [[org.cloboss/core "2.2.0-SNAPSHOT"]
+                 [org.cloboss/caching "2.2.0-SNAPSHOT"]
+                 [org.cloboss/messaging "2.2.0-SNAPSHOT"]
+                 [org.cloboss/scheduling "2.2.0-SNAPSHOT"]
+                 [org.cloboss/web "2.2.0-SNAPSHOT"]
+                 [org.cloboss/transactions "2.2.0-SNAPSHOT"]
+                 [top.atticboss/atticboss-messaging-artemis "0.14.0-SNAPSHOT"]])

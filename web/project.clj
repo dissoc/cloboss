@@ -12,15 +12,15 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-(defproject org.cloboss/web "2.1.11-SNAPSHOT"
+(defproject org.cloboss/web "2.2.0-SNAPSHOT"
   :description "Serve web requests using Ring handlers, Servlets, or Undertow HttpHandlers."
   :plugins [[lein-modules "0.3.11"]]
   :java-source-paths ["src"]
 
   :dependencies [;;[org.cloboss/core _]
-                 [org.cloboss/core "2.1.11-SNAPSHOT"]
-                 ;;[org.projectodd.atticboss/atticboss-web-undertow _]
-                 [org.projectodd.atticboss/atticboss-web-undertow "0.13.2-SNAPSHOT"]
+                 [org.cloboss/core "2.2.0-SNAPSHOT"]
+                 ;;[top.atticboss/atticboss-web-undertow _]
+                 [top.atticboss/atticboss-web-undertow "0.14.0-SNAPSHOT"]
                  ;;[ring/ring-core _]
                  [ring/ring-core "1.11.0"]]
 

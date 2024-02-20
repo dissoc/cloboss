@@ -15,7 +15,7 @@
 (ns cloboss.daemons-test
   (:require [cloboss.daemons :refer :all]
             [clojure.test  :refer :all])
-  (:import org.projectodd.atticboss.AtticBoss))
+  (:import top.atticboss.AtticBoss))
 
 (deftest singleton-should-work-outside-of-the-container
   (let [started-p (promise)

@@ -15,8 +15,8 @@
 (ns ^:no-doc ^:internal cloboss.scheduling.internal
     (:require [cloboss.internal.options :as o]
               [cloboss.internal.util    :as u])
-  (:import org.projectodd.atticboss.AtticBoss
-           [org.projectodd.atticboss.scheduling
+  (:import top.atticboss.AtticBoss
+           [top.atticboss.scheduling
             Scheduling Scheduling$CreateOption Scheduling$ScheduleOption]))
 
 (def ^:internal create-defaults (o/opts->defaults-map Scheduling$CreateOption))

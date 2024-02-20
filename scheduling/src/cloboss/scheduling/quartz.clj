@@ -15,7 +15,7 @@
 (ns cloboss.scheduling.quartz
     "Utilities specific to [Quartz](http://quartz-scheduler.org/)."
     (:require [cloboss.scheduling.internal :as int])
-  (:import org.projectodd.atticboss.scheduling.QuartzScheduling))
+  (:import top.atticboss.scheduling.QuartzScheduling))
 
 (defn quartz-scheduler
   "Returns the internal Quartz scheduler instance for the given options.

@@ -18,9 +18,9 @@
             [cloboss.internal.util      :as u]
             [cloboss.util               :as pu]
             [cloboss.messaging.internal :refer [broker]])
-  (:import [org.projectodd.atticboss.messaging Destination Queue]
-           org.projectodd.atticboss.messaging.jms.JMSDestination
-           org.projectodd.atticboss.messaging.artemis.ArtemisMessaging
+  (:import [top.atticboss.messaging Destination Queue]
+           top.atticboss.messaging.jms.JMSDestination
+           top.atticboss.messaging.artemis.ArtemisMessaging
            org.apache.activemq.artemis.api.core.SimpleString
            org.apache.activemq.artemis.jms.server.JMSServerManager))
 

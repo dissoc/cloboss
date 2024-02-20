@@ -12,7 +12,7 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-(defproject org.cloboss/integs "2.1.11-SNAPSHOT"
+(defproject org.cloboss/integs "2.2.0-SNAPSHOT"
   :plugins [[lein-modules "0.3.11"]]
   :dependencies [[org.cloboss/cloboss _]
                  [org.cloboss/wildfly _]]

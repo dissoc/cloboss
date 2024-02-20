@@ -19,8 +19,8 @@
             [cloboss.internal.util    :refer [kwargs-or-map->map]]
             [cloboss.codecs           :refer [lookup-codec]]
             [cloboss.caching.options  :refer [wash listener]])
-  (:import [org.projectodd.atticboss AtticBoss Options]
-           [org.projectodd.atticboss.caching Caching Caching$CreateOption Config]))
+  (:import [top.atticboss AtticBoss Options]
+           [top.atticboss.caching Caching Caching$CreateOption Config]))
 
 (defn- ^Caching component [] (AtticBoss/findOrCreateComponent Caching))
 

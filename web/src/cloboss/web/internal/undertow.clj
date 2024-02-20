@@ -23,12 +23,12 @@
              [io.undertow.server HttpHandler HttpServerExchange]
              [io.undertow.server.session Session SessionConfig SessionCookieConfig]
              [io.undertow.util HeaderMap Headers HttpString Sessions]
-             [org.projectodd.atticboss.web.async Channel
+             [top.atticboss.web.async Channel
               Channel$OnOpen Channel$OnClose Channel$OnError]
-             [org.projectodd.atticboss.web.async.websocket WebsocketChannel
+             [top.atticboss.web.async.websocket WebsocketChannel
               WebsocketChannel$OnMessage]
-             org.projectodd.atticboss.web.undertow.async.UndertowHttpChannel
-             [org.projectodd.atticboss.web.undertow.async.websocket
+             top.atticboss.web.undertow.async.UndertowHttpChannel
+             [top.atticboss.web.undertow.async.websocket
               UndertowWebsocket UndertowWebsocketChannel WebsocketInitHandler]
              [java.io File InputStream]
              java.nio.charset.Charset))

@@ -16,8 +16,8 @@
   "Provides a common interface for WebSockets and HTTP streaming."
   (:require [cloboss.internal.options :as o]
             [cloboss.internal.util    :as u])
-  (:import [org.projectodd.atticboss.web.async Channel Channel$OnComplete HttpChannel]
-           [org.projectodd.atticboss.web.async.websocket WebsocketChannel]
+  (:import [top.atticboss.web.async Channel Channel$OnComplete HttpChannel]
+           [top.atticboss.web.async.websocket WebsocketChannel]
            [java.io File FileInputStream InputStream]
            [java.util Arrays Map]
            clojure.lang.ISeq))

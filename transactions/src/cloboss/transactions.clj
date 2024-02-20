@@ -14,8 +14,8 @@
 
 (ns cloboss.transactions
   "Provides support for distributed (XA) transactions."
-  (:import [org.projectodd.atticboss AtticBoss]
-           [org.projectodd.atticboss.transactions Transaction]))
+  (:import [top.atticboss AtticBoss]
+           [top.atticboss.transactions Transaction]))
 
 (def ^:no-doc ^Transaction tx (memoize #(AtticBoss/findOrCreateComponent Transaction)))
 

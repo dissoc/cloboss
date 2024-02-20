@@ -17,8 +17,8 @@
               [cloboss.internal.util    :as u])
     (:import java.lang.AutoCloseable
              java.util.concurrent.Future
-             org.projectodd.atticboss.AtticBoss
-             [org.projectodd.atticboss.messaging
+             top.atticboss.AtticBoss
+             [top.atticboss.messaging
               ConcreteReply
               Context Context$Mode
               Message

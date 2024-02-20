@@ -19,7 +19,7 @@
             [clojure.java.classpath :as cp]
             [cloboss.internal.util :refer [try-resolve warn-deprecated *warn-on-deprecation*]]
             [atticboss.util        :as wu])
-  (:import org.projectodd.atticboss.AtticBoss))
+  (:import top.atticboss.AtticBoss))
 
 (defn reset
   "Resets the underlying AtticBoss layer.

@@ -17,7 +17,7 @@
     (:require [clojure.string :as str])
     (:import clojure.lang.IDeref
              java.util.UUID
-             org.projectodd.atticboss.AtticBoss))
+             top.atticboss.AtticBoss))
 
 (defn hash-based-component-name [defaults opts]
   (->> opts

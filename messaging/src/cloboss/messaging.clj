@@ -19,7 +19,7 @@
             [cloboss.internal.util    :as u]
             [cloboss.codecs           :as codecs]
             [cloboss.messaging.internal :refer :all])
-  (:import [org.projectodd.atticboss.messaging Context Destination
+  (:import [top.atticboss.messaging Context Destination
             Destination$ListenOption
             Destination$PublishOption
             Destination$ReceiveOption

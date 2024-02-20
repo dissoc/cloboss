@@ -15,7 +15,7 @@
 (ns cloboss.messaging.internal-test
   (:require [cloboss.messaging.internal :refer :all]
             [clojure.test                :refer :all])
-  (:import org.projectodd.atticboss.messaging.Message))
+  (:import top.atticboss.messaging.Message))
 
 (defn make-message
   ([body content-type]
