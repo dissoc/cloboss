@@ -1,0 +1,38 @@
+#+TITLE:     cloboss
+#+SUBTITLE:  undertow server, handlers, and utils for undertow in clojure
+#+KEYWORDS:  clojure, undertow, http, https, web server, undertow handlers
+#+LANGUAGE:  en
+
+cloboss was forked from the immutant project. It is currently being revived.
+Wildfly and ruby have been removed. Wildfly support may return in the future.
+There have been minor changes that will be reflected in updates to the docs
+soon.
+
+cloboss is an integrated suite of libraries providing commodity
+services for Clojure applications. This README covers building
+cloboss.
+
+* installation
+** Leiningen
+#+BEGIN_SRC clojure
+[org.cloboss/cloboss "2.2.0-SNAPSHOT"]
+#+END_SRC
+
+** maven
+#+BEGIN_SRC java
+<dependency>
+  <groupId>org.cloboss</groupId>
+  <artifactId>cloboss</artifactId>
+  <version>2.2.0-SNAPSHOT</version>
+</dependency>
+#+END_SRC
+
+* building
+from the root of the project, run:
+
+#+begin_src sh
+lein modules all
+#+end_src
+
+* license
+cloboss is licensed under the Apache License, v2.
